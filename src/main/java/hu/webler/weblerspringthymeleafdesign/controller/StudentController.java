@@ -16,7 +16,7 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    @GetMapping({"", "/", "/home"})
+    @GetMapping({"", "/", "/home"}) // ({"", "/", "/home", "/index", "/index.html"})
     public List<Student> renderStudents() {
         return studentService.getStudents();
     }

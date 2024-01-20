@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Student List</title>
+  </head>
+  <body>
+
+    <h2>Student List</h2>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Last Name</th>
+          <th>Middle Name</th>
+          <th>First Name</th>
+          <th>Email</th>
+          <th>Course</th>
+        </tr>
+      </thead>
+
+      <tbody th:if="${not #lists.isEmpty(students)}">
+        <tr th:each="student, stat : ${students}">
+          <td th:text="${stat.index + 1}"></td>
+          <td th:text="${student.lastName}"></td>
+          <td th:text="${student.midName}"></td>
+          <td th:text="${student.firstName}"></td>
+          <td th:text="${student.email}"></td>
+          <td th:text="${student.getCOURSE_NAME()}"></td>
+        </tr>
+      </tbody>
+      <tbody th:unless="${not #lists.isEmpty(students)}">
+        <tr>
+          <td colspan="6">No data found</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <br/>
+
+    <a th:href="@{/}">Back to Home</a>
+
+  </body>
+</html>
