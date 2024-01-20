@@ -18,15 +18,25 @@ public class StudentService {
     public List<Student> getStudents() {
         return dataInitializer.getSTUDENTS()
                 .stream()
-                .sorted(Comparator.comparing(Student::getLastName))
-                .collect(Collectors.toList());
+                .sorted()
+                .toList();
     }
 
     public List<Student> searchStudentsByEmail(String email) {
         return dataInitializer.getSTUDENTS()
                 .stream()
                 .filter(student -> student.getEmail().contains(email))
-                .sorted(Comparator.comparing(Student::getLastName))
+                .sorted()
+                .toList();
+    }
+
+    // if we don't have Comparator interface!
+    /*public List<Student> searchStudentsByEmail(String email) {
+        return dataInitializer.getSTUDENTS()
+                .stream()
+                .filter(student -> student.getEmail().contains(email))
+                .sorted(Comparator.comparing(Student::getEmail))
                 .collect(Collectors.toList());
     }
+    */
 }
