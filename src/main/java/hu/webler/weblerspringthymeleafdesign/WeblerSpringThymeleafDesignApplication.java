@@ -9,5 +9,4 @@ public class WeblerSpringThymeleafDesignApplication {
     public static void main(String[] args) {
         SpringApplication.run(WeblerSpringThymeleafDesignApplication.class, args);
     }
-
 }
