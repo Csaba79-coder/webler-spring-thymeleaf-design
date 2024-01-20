@@ -28,6 +28,12 @@ public class StudentWebController { // not the best naming, but in our case it i
         return "students";
     }
 
+    @GetMapping("/students-hun")
+    public String renderAllStudentsHunOrderOnWeb(Model model) {
+        model.addAttribute("students", studentService.getStudentsHungarian());
+        return "students";
+    }
+
     @GetMapping("/students/search")
     public String renderAllStudentsOnWeb(@RequestParam String search, Model model) {
         if (search != null && !search.isEmpty()) {

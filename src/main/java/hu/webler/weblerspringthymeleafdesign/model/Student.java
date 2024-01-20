@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class Student implements Comparable<Student> {
+public class Student implements Comparable<Student> { // Comparable<T>
 
     private String firstName;
 

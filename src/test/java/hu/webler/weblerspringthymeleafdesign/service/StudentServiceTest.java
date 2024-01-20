@@ -46,7 +46,7 @@ class StudentServiceTest {
         // Arrange
         List<Student> mockStudents = createTestList();
 
-        when(dataInitializerMock.getSTUDENTS()).thenReturn(mockStudents);
+        when(dataInitializerMock.getSTUDENTS_ENGLISH()).thenReturn(mockStudents);
 
         // Act
         List<Student> students = studentService.getStudents();
@@ -64,7 +64,7 @@ class StudentServiceTest {
         // Arrange
         List<Student> mockStudents = createTestList();
 
-        when(dataInitializerMock.getSTUDENTS()).thenReturn(mockStudents);
+        when(dataInitializerMock.getSTUDENTS_ENGLISH()).thenReturn(mockStudents);
 
         String emailToSearch = "john@example.com";
 
