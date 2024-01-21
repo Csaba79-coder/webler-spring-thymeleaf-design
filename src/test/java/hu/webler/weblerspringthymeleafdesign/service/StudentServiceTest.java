@@ -2,10 +2,12 @@ package hu.webler.weblerspringthymeleafdesign.service;
 
 import hu.webler.weblerspringthymeleafdesign.bootstrap.DataInitializer;
 import hu.webler.weblerspringthymeleafdesign.model.Student;
+import hu.webler.weblerspringthymeleafdesign.util.Sorting;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.text.RuleBasedCollator;
 import java.util.Arrays;
 import java.util.List;
 
@@ -75,6 +77,50 @@ class StudentServiceTest {
         assertNotNull(filteredStudents);
         assertEquals(1, filteredStudents.size());
         assertEquals("John", filteredStudents.get(0).getFirstName());
+    }
+
+    @Test
+    @DisplayName("Test getStudentsHungarian() method")
+    void testGetStudentsHungarian_shouldReturnSortedStudents() {
+        // Arrange
+        List<Student> students = createHungarianTestList();
+
+        when(dataInitializerMock.getSTUDENTS_HUNGARIAN()).thenReturn(students);
+
+        // Create a collator with Hungarian rules
+        RuleBasedCollator hungarianCollator = Sorting.createHungarianCollator();
+
+        // Act
+        List<Student> sortedStudents = studentService.getStudentsHungarian();
+
+        // Assert
+        assertNotNull(sortedStudents);
+        assertEquals(4, sortedStudents.size()); // Ensure all students are present in the result
+
+        // Verify that the list is sorted by last name using the Hungarian collator
+        assertTrue(isSortedByLastName(sortedStudents, hungarianCollator));
+    }
+
+    private boolean isSortedByLastName(List<Student> students, RuleBasedCollator collator) {
+        for (int i = 0; i < students.size() - 1; i++) {
+            Student current = students.get(i);
+            Student next = students.get(i + 1);
+
+            int comparisonResult = collator.compare(current.getLastName(), next.getLastName());
+            if (comparisonResult > 0) {
+                return false; // Not sorted in ascending order
+            }
+        }
+        return true; // Sorted in ascending order
+    }
+
+    private List<Student> createHungarianTestList() {
+        return List.of(
+                new Student("John", null, "Doe", "testemail@test.hu"),
+                new Student("Árpád", null, "Bálint", "testemail@test.org"),
+                new Student("Zsuzsanna", null, "Nagy", "testemail@test.com"),
+                new Student("Gábor", null, "Kovács", "testemail@test.co.uk")
+        );
     }
 
     private List<Student> createTestList() {
