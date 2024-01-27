@@ -95,7 +95,7 @@ class StudentServiceTest {
 
         // Assert
         assertNotNull(sortedStudents);
-        assertEquals(4, sortedStudents.size()); // Ensure all students are present in the result
+        assertEquals(6, sortedStudents.size()); // Ensure all students are present in the result
 
         // Verify that the list is sorted by last name using the Hungarian collator
         assertTrue(isSortedByLastName(sortedStudents, hungarianCollator));
@@ -119,7 +119,9 @@ class StudentServiceTest {
                 new Student("John", null, "Doe", "testemail@test.hu"),
                 new Student("Árpád", null, "Bálint", "testemail@test.org"),
                 new Student("Zsuzsanna", null, "Nagy", "testemail@test.com"),
-                new Student("Gábor", null, "Kovács", "testemail@test.co.uk")
+                new Student("Zsuzsanna", null, "Ábrahám", "testemail@test.com"),
+                new Student("Gábor", null, "Kovács", "testemail@test.co.uk"),
+                new Student("Zsuzsanna", null, "Antal", "testemail@test.com")
         );
     }
 
